@@ -2,6 +2,8 @@
  * @providesModule react-native-link-preview
  */
 
+import RNFetchBlob from 'react-native-fetch-blob';
+
 const cheerio = require('cheerio-without-node-native');
 
 import { REGEX_VALID_URL } from './constants';
@@ -22,7 +24,7 @@ export default class LinkPreview {
       });
 
       if (detectedUrl) {
-        fetch(detectedUrl)
+        RNFetchBlob.fetch(detectedUrl)
         .then(response => response.text())
         .then(text => {
           resolve(this._parseResponse(text, detectedUrl));
